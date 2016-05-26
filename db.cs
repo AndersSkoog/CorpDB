@@ -12,10 +12,10 @@ namespace corpdb
 
     public static class DB
     {
-        public static String driverconnection = "mongodb://admin:nosalt@ds049854.mongolab.com:49854/corpdb";
+        public static String driverconnection = "mongolab credentials";
         public static MongoClient mongoclient = new MongoClient(driverconnection);
-        public static IMongoDatabase db = mongoclient.GetDatabase("corpdb");
-        public static IMongoCollection<BsonDocument> coll = db.GetCollection<BsonDocument>("company");
+        public static IMongoDatabase db = mongoclient.GetDatabase("databasename");
+        public static IMongoCollection<BsonDocument> coll = db.GetCollection<BsonDocument>("recordname");
         public static async Task<IEnumerable<subject>> Query(Func<subject, bool> whereclause)
         {
             var coll = await allsubjects();

@@ -1,0 +1,16 @@
+﻿@Master['master.sshtml']
+@Section['Content']
+	<h3>Login</h3>
+	<form method="POST" action="/login" class="navbar-form">
+		<div class="form-group">
+			username:<input type="email" name="email" class="form-control"/>
+		</div><br/>
+		<div class="form-group">
+			password:<input type="password" name="pw" class="form-control">
+		</div><br/>
+		<div class="form-group">
+		  	<input type="submit" class="btn btn-primary" value="submit"/>
+		</div>
+	</form>
+	<p>@!Model.msg</p>
+@EndSection

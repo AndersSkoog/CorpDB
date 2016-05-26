@@ -1,0 +1,57 @@
+﻿@Master['master.sshtml']
+@Section['Content']
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/index">Index</a>
+  </div>
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/subject/new">New</a>
+  </div>
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/signout">Signout</a>
+  </div>
+</div>
+	<input type="text" id="firstname" class="form-control"/>firstname<br>
+	<input type="text" id="lastname" class="form-control"/>lastname<br>
+    <select id="role" class="form-control">
+		@Each.roleoptions
+		<option value="@Current">@!Current</option>
+		@EndEach
+	</select><br>
+	<input type="text" id="ssnr" class="form-control"/>social security nr<br>
+	<input type="text" id="email" class="form-control"/>email<br>
+	<input type="text" id="phone" class="form-control"/>phone<br>
+	<input type="text" id="street" class="form-control"/>street<br>
+	<input type="text" id="city" class="form-control"/>city<br>
+	<input type="text" id="zip" class="form-control"/>zip<br>
+    <button id="createbtn" class="btn btn-primary" value="Create" style="margin: 10px">Save</button><br/>
+<script>
+	$(document).ready(function(){
+		var postobj = function(){
+			this.firstname = $("#firstname").val();
+			this.lastname = $("#lastname").val();
+			this.role = $("#role").val();
+			this.ssnr = $("#ssnr").val();
+			this.email = $("#email").val();
+			this.phone = $("#phone").val();
+			this.street = $("#street").val();
+			this.city = $("#city").val();
+			this.zip = $("#zip").val();
+		}
+		var rd;
+		$("#createbtn").on("click", function(){
+			$.ajax({
+				url: "/subject/create",
+				method: "POST",
+				data: JSON.stringify(new postobj()),
+				dataType: "application/json",
+				success: resp(rd)
+			});
+		});
+		function resp(redirecturl){
+			window.location.assign(redirecturl);
+		}
+			
+	});
+</script>
+@EndSection

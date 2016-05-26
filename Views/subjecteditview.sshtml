@@ -1,0 +1,58 @@
+﻿@Master['master.sshtml']
+@Section['Content']
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/index">Index</a>
+  </div>
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/subject/new">New</a>
+  </div>
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/signout">Signout</a>
+  </div>
+</div><br/>
+<input type="text" id="firstname" class="form-control" value="@Model.Subject.firstname"/>firstname<br>
+<input type="text" id="lastname" class="form-control" value="@Model.Subject.lastname"/>lastname<br>
+<select id="role" class="form-control">
+	@Each.roleoptions
+	<option value="@Current">@!Current</option>
+	@EndEach
+</select>role<br/>
+<input type="text" id="ssnr" class="form-control" value="@Model.Subject.ssnr"/>social security nr<br>
+<input type="email" id="email" class="form-control" value="@Model.Subject.email"/>email<br>
+<input type="text" id="phone" class="form-control" value="@Model.Subject.phone"/>phone<br>
+<input type="text" id="street" class="form-control" value="@Model.Subject.street"/>street<br>
+<input type="text" id="city" class="form-control" value="@Model.Subject.city"/>city<br>
+<input type="text" id="zip" class="form-control" value="@Model.Subject.zip"/>zip<br>
+<button id="savebtn" class="btn btn-primary" value="save" style="margin: 10px">Save</button><br/>
+<script>
+	$(document).ready(function(){
+		var postobj = function(){
+			this._id = "@Model.Subject._id";
+			this.firstname = $("#firstname").val();
+			this.lastname = $("#lastname").val();
+			this.role = $("#role").val();
+			this.ssnr = $("#ssnr").val();
+			this.email = $("#email").val();
+			this.phone = $("#phone").val();
+			this.street = $("#street").val();
+			this.city = $("#city").val();
+			this.zip = $("#zip").val();
+		}
+		var rd;
+		$("#savebtn").on("click", function(){
+			$.ajax({
+				url: "/subject/update",
+				method: "POST",
+				data: JSON.stringify(new postobj()),
+				dataType: "application/json",
+				success: resp(rd)
+			});
+		});
+		function resp(redirecturl){
+			window.location.assign(redirecturl);
+		}
+			
+	});
+</script>
+@EndSection

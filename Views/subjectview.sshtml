@@ -1,0 +1,50 @@
+﻿@Master['master.sshtml']
+@Section['Content']
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/index">Index</a>
+  </div>
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/subject/new">New</a>
+  </div>
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/signout">Signout</a>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Lastname</div>
+  <div class="panel-body">@!Model.Subject.lastname</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">role</div>
+  <div class="panel-body">@!Model.Subject.role</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">social security nr</div>
+  <div class="panel-body">@!Model.Subject.ssnr</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">email</div>
+  <div class="panel-body">@!Model.Subject.email</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">phone</div>
+  <div class="panel-body">@!Model.Subject.phone</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">street</div>
+  <div class="panel-body">@!Model.Subject.street</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">city</div>
+  <div class="panel-body">@!Model.Subject.city</div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">zip</div>
+  <div class="panel-body">@!Model.Subject.zip</div>
+</div>
+@If.writeable
+<a type="button" class="btn btn-primary btn-lg" href="/subject/edit/@Model.Subject.email">Edit</button>
+<a type="button" class="btn btn-primary btn-lg" href="/subject/delete/@Model.Subject.email">Delete</button>
+@EndIf
+@EndSection

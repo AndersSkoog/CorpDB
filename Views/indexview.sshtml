@@ -1,0 +1,24 @@
+﻿@Master['master.sshtml']
+@Section['Content']
+<div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/index">Index</a>
+  </div>
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/subject/new">New</a>
+  </div>
+  <div class="btn-group" role="group">
+    <a type="button" class="btn btn-default" href="/signout">Signout</a>
+  </div>
+</div>
+<p>@!Model.msg</p>
+<table class="table" id="indextable">
+	@Each.Subjects
+    <tr name="@Current.email">
+        <td><a href="/subject/@Current.email">@!Current.email</a></td>
+        <td>@!Current.role</td>
+    </tr>
+	@EndEach
+</table>
+@EndSection
+
